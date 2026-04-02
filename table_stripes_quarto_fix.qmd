@@ -1,0 +1,41 @@
+---
+title: "getting rid of GT table stripes in quarto"
+format: html
+editor: visual
+table_css: FALSE
+---
+
+## Stripes
+
+There seems to be a default rendering in quarto of adding stripes to tables.
+
+If you want to remove stripes it does not want to.  
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(gt)
+library(tidyverse)
+
+# even adding option within GT does not fix the
+mtcars |> 
+  gt() |>
+  opt_row_striping(row_striping = FALSE)
+
+```
+
+
+## Fix
+
+If you add
+
+html-table-processing: none
+
+To the YAML, it seems to fix this issue and remove this as default.
+
+Not sure if this affects other table packages but it may do.
+
+
